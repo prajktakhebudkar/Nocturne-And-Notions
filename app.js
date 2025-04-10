@@ -99,6 +99,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Format the mood name for display
         const formattedMood = mood.replace(/-/g, ' ');
         moodTitle.textContent = `Recommendations for when you're feeling: ${formattedMood.toUpperCase()}`;
+
+        // Reset animation by removing classes and re-adding them after a tiny delay
+    const boxes = document.querySelectorAll('.recommendation-box');
+    boxes.forEach(box => {
+        box.style.animation = 'none';
+        box.offsetHeight; // Trigger reflow
+    }];    
         
         // Get random recommendations
         const playlist = getRandomItem(moodData.playlists[mood]);
@@ -109,6 +116,13 @@ document.addEventListener('DOMContentLoaded', () => {
         playlistRecommendation.textContent = playlist;
         activityRecommendation.textContent = activity;
         quoteRecommendation.textContent = quote;
+        
+        // Re-enable animations after content is updated
+        setTimeout(() => {
+            boxes.forEach(box => {
+                box.style.animation = '';
+            });
+        }, 10);
         
         // Hide mood selection, show recommendations
         document.querySelector('.mood-selection').style.display = 'none';
