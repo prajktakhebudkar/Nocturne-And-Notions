@@ -1,5 +1,6 @@
 // Main application logic
 document.addEventListener('DOMContentLoaded', () => {
+    // DOM elements
     const moodButtons = document.querySelectorAll('.mood-btn');
     const recommendationsContainer = document.getElementById('recommendations');
     const moodTitle = document.getElementById('mood-title');
@@ -59,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Once data is loaded, enable buttons
             enableMoodButtons();
+            console.log('All data loaded successfully');
             
         } catch (error) {
             console.error('Error loading CSV data:', error);
@@ -100,13 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const formattedMood = mood.replace(/-/g, ' ');
         moodTitle.textContent = `Recommendations for when you're feeling: ${formattedMood.toUpperCase()}`;
 
-        // Reset animation by removing classes and re-adding them after a tiny delay
-    const boxes = document.querySelectorAll('.recommendation-box');
-    boxes.forEach(box => {
-        box.style.animation = 'none';
-        box.offsetHeight; // Trigger reflow
-    });    
-        
         // Get random recommendations
         const playlist = getRandomItem(moodData.playlists[mood]);
         const activity = getRandomItem(moodData.activities[mood]);
@@ -117,23 +112,30 @@ document.addEventListener('DOMContentLoaded', () => {
         activityRecommendation.textContent = activity;
         quoteRecommendation.textContent = quote;
         
-        // Re-enable animations after content is updated
-        setTimeout(() => {
-            boxes.forEach(box => {
-                box.style.animation = '';
-            });
-        }, 10);
-        
         // Hide mood selection, show recommendations
         document.querySelector('.mood-selection').style.display = 'none';
         recommendationsContainer.style.display = 'block';
         
-        // Reset animation by removing and re-adding recommendation boxes
+        // Reset animation for recommendation boxes
+        resetAnimations();
+    }
+    
+    // Function to reset animations on recommendation boxes
+    function resetAnimations() {
         const boxes = document.querySelectorAll('.recommendation-box');
+        
+        // Remove animations
         boxes.forEach(box => {
-            const clone = box.cloneNode(true);
-            box.parentNode.replaceChild(clone, box);
+            box.style.animation = 'none';
+            box.offsetHeight; // Trigger reflow
         });
+        
+        // Re-add animations after a short delay
+        setTimeout(() => {
+            boxes.forEach((box, index) => {
+                box.style.animation = `fadeIn 0.5s ease-out forwards ${index * 0.1}s`;
+            });
+        }, 10);
     }
     
     // Helper function to get a random item from an array
