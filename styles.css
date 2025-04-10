@@ -20,6 +20,7 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     padding: 30px;
     min-height: 80vh;
+    position: relative;
 }
 
 header {
@@ -32,10 +33,16 @@ header {
 header h1 {
     font-size: 2.2rem;
     margin-bottom: 10px;
-    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    background: linear-gradient(90deg, #FF69B4, #FF1493); /* Barbie pink gradient */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+.tagline {
+    font-style: italic;
+    margin-bottom: 15px;
+    color: #777;
 }
 
 h2 {
@@ -59,6 +66,14 @@ h3 {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 15px;
+}
+
+.signature {
+    text-align: right;
+    margin-top: 20px;
+    font-style: italic;
+    color: #888;
+    font-size: 0.9rem;
 }
 
 .mood-btn {
