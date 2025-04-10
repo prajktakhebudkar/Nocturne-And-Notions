@@ -129,11 +129,11 @@ document.addEventListener('DOMContentLoaded', () => {
         recommendationsContainer.style.display = 'block';
         
         // Reset animation by removing and re-adding recommendation boxes
-       // const boxes = document.querySelectorAll('.recommendation-box');
-        //boxes.forEach(box => {
-          //  const clone = box.cloneNode(true);
-           // box.parentNode.replaceChild(clone, box);
-       // });
+        const boxes = document.querySelectorAll('.recommendation-box');
+        boxes.forEach(box => {
+            const clone = box.cloneNode(true);
+            box.parentNode.replaceChild(clone, box);
+        });
     }
     
     // Helper function to get a random item from an array
