@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     boxes.forEach(box => {
         box.style.animation = 'none';
         box.offsetHeight; // Trigger reflow
-    }];    
+    });    
         
         // Get random recommendations
         const playlist = getRandomItem(moodData.playlists[mood]);
